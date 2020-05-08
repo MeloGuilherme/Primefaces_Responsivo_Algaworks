@@ -42,3 +42,20 @@
 	}
 	
 }
+
+/*CONTENT*/
+
+.aw-content{
+	
+	margin-top: 50px;
+	transition: margin-left 0.5s;
+}
+
+@media (min-width: 960px)  {
+	
+	.aw-content{
+		
+		margin-left: 210px;
+	}
+	
+}
