@@ -4,33 +4,132 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	template="/WEB-INF/templates/layout.xhtml">
-	
+
 	<ui:define name="content">
-		
-		<h1 class="aw-page-title">Cadastro de Cliente</h1>
-		
+
+		<h1 class="aw-page-title">
+			Cadastro de Cliente
+			<h:outputText value="Campos Obrigatorios ( * ) " styleClass="req-fields"/>
+		</h1>
+
 		<h:form id="frm">
 			<p:toolbar>
-			
+
 				<p:toolbarGroup>
-					<p:commandButton value="Salvar"/>
+					<p:commandButton value="Salvar" />
 				</p:toolbarGroup>
-				
+
 				<p:toolbarGroup align="right">
-					<p:commandButton value="Novo"/>
-					<p:button value="Pesquisa" outcome="pesquisa_clientes"/>
+					<p:commandButton value="Novo" />
+					<p:button value="Pesquisa" outcome="pesquisa_clientes" />
 				</p:toolbarGroup>
-				
+
 			</p:toolbar>
-			
-			<p:tabView style="margin-top: 10px;">
-				<p:tab title="Dados básicos"></p:tab>
-				<p:tab title="Endereços"></p:tab>
-				<p:tab title="Observações"></p:tab>
-			</p:tabView>
-				
+
+			<div class="ui-fluid">
+				<p:tabView style="margin-top: 10px;">
+
+					<p:tab title="Dados básicos">
+					
+						<p:panelGrid columns="4" layout="grid"
+							columnClasses="ui-grid-col-2, ui-grid-col-4, 
+										ui-grid-col-2, ui-grid-col-4"
+							styleClass="panelgrid-noborder">
+
+							<p:outputLabel value="Nome:" for="nome" />
+							<p:inputText required="true" id="nome" />
+
+							<p:outputLabel value="CPF:" for="cpf" />
+							<p:inputMask required="true" id="cpf" mask="999.999.999-99" />
+
+							<p:outputLabel value="Celular" for="celular" />
+							<p:inputText required="true" id="celular" />
+
+							<p:outputLabel value="Telefone:" for="telefone" />
+							<p:inputText id="telefone" />
+
+							<p:outputLabel value="Email:" for="email" />
+							<p:inputText required="true" id="email" />
+
+							<p:outputLabel value="Estado:" for="estado" />
+							<p:selectOneMenu id="estado">
+								<f:selectItem itemLabel="Selecione..." />
+								<f:selectItem itemLabel="AC" itemValue="Acre" />
+								<f:selectItem itemLabel="AL" itemValue="Alagoas" />
+								<f:selectItem itemLabel="AP" itemValue="Amapá" />
+								<f:selectItem itemLabel="AM" itemValue="Amazonas" />
+								<f:selectItem itemLabel="BA" itemValue="Bahia" />
+								<f:selectItem itemLabel="CE" itemValue="Ceará" />
+								<f:selectItem itemLabel="DF" itemValue="Distrito Federal" />
+								<f:selectItem itemLabel="ES" itemValue="Espírito Santo" />
+								<f:selectItem itemLabel="GO" itemValue="Goiás" />
+								<f:selectItem itemLabel="MA" itemValue="Maranhão" />
+								<f:selectItem itemLabel="MT" itemValue="Mato Grosso" />
+								<f:selectItem itemLabel="MS" itemValue="Mato Grosso do Sul" />
+								<f:selectItem itemLabel="MG" itemValue="Minas Gerais" />
+								<f:selectItem itemLabel="PA" itemValue="Pará" />
+								<f:selectItem itemLabel="PB" itemValue="Paraíba" />
+								<f:selectItem itemLabel="PR" itemValue="Paraná" />
+								<f:selectItem itemLabel="PE" itemValue="Pernambuco" />
+								<f:selectItem itemLabel="PI" itemValue="Piauí" />
+								<f:selectItem itemLabel="RJ" itemValue="Rio de Janeiro" />
+								<f:selectItem itemLabel="RN" itemValue="Rio Grande do Norte" />
+								<f:selectItem itemLabel="RS" itemValue="Rio Grande do Sul" />
+								<f:selectItem itemLabel="RO" itemValue="Rondônia" />
+								<f:selectItem itemLabel="RR" itemValue="Roraima" />
+								<f:selectItem itemLabel="SC" itemValue="Santa Catarina" />
+								<f:selectItem itemLabel="SP" itemValue="São Paulo" />
+								<f:selectItem itemLabel="SE" itemValue="Sergipe" />
+								<f:selectItem itemLabel="TO" itemValue="Tocantins" />
+
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Data de Nascimento:" for="dataNascimento" />
+							<p:inputText id="dataNascimento" />
+
+							<p:outputLabel />
+							<p:selectBooleanCheckbox itemLabel="Parcelamento liberado" />
+
+						</p:panelGrid>
+
+					</p:tab>
+
+					<p:tab title="Endereços">
+						<p:commandButton value="Novo endereço" style="width: auto" />
+
+						<p:dataTable value="#{clienteController.clienteEdicao.enderecos}"
+							var="endereco"
+							emptyMessage="Nenhum endereço disponível para exibir :("
+							style="margin-top: 10px">
+							
+							<p:column headerText="Logradouro:">
+								<h:outputText value="#{endereco.logradouro}" />
+							</p:column>
+							
+							<p:column headerText="Número:">
+								<h:outputText value="#{endereco.numero}" />
+							</p:column>
+							
+							<p:column headerText="Bairro:" priority="4">
+								<h:outputText value="#{endereco.bairro}" />
+							</p:column>
+							
+							<p:column headerText="Cidade:" priority="6">
+								<h:outputText value="#{endereco.cidade}" />
+							</p:column>
+							
+						</p:dataTable>
+					</p:tab>
+
+					<p:tab title="Observações">
+						<p:inputTextarea rows="7" />
+					</p:tab>
+
+				</p:tabView>
+			</div>
+
 		</h:form>
-		
+
 	</ui:define>
-	
+
 </ui:composition>
