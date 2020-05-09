@@ -21,7 +21,7 @@
 			
 			<p:dataTable value="#{clienteController.clientes}" var="cliente"
 						selectionMode="single" selection="#{clienteController.clienteEdicao}"
-						rowKey="#{cliente.cpf}"
+						rowKey="#{cliente.cpf}" reflow="true"
 						style="margin-top: 10px;">
 						
 				<p:column headerText="Nome">
