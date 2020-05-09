@@ -14,15 +14,20 @@
 
 	<h:outputStylesheet library="webjars"
 		name="font-awesome/4.3.0/css/font-awesome-jsf.css" />
+		
 	<h:outputStylesheet name="primeicons/primeicons.css"
 		library="primefaces" />
 
+	<h:outputStylesheet library="algaworks" name="styles/custom.css" />
 	<h:outputStylesheet library="algaworks" name="styles/layout.css" />
 	<h:outputStylesheet library="algaworks" name="styles/components.css" />
-	
-	<h:outputScript target="body" library="primefaces" name="jquery/jquery.js" />
-	<h:outputScript target="body" library="algaworks" name="javascripts/app.js" />
+
+	<h:outputScript target="body" library="primefaces"
+		name="jquery/jquery.js" />
 		
+	<h:outputScript target="body" library="algaworks"
+		name="javascripts/app.js" />
+
 </h:head>
 
 <h:body>
@@ -33,10 +38,38 @@
 		<a href="#" class="aw-toggle  js-toggle"><i class="fa  fa-bars"></i></a>
 	</header>
 
-	<aside class="aw-sidebar  js-sidebar"></aside>
+	<aside class="aw-sidebar  js-sidebar">
+	
+		<nav class="aw-menu">
+
+			<ul>
+			
+				<li>
+					<h:link><i class="fa fa-fw fa-home"></i> Dashboard </h:link>
+				</li>
+				
+				<li class="is-selected">
+					<h:link><i class="fa fa-fw fa-user"></i> Clientes </h:link>
+				</li>
+				
+				<li>
+					<h:link><i class="fa fa-fw fa-file-text"></i> Relatórios </h:link>
+				</li>
+				
+				<li>
+					<h:link><i class="fa fa-fw fa-cog"></i> Configurações </h:link>
+				</li>
+				
+			</ul>
+
+		</nav>
+		
+	</aside>
 
 	<section class="aw-content  js-content">
+	
 		<h1>Conteúdo</h1>
+		
 	</section>
 
 </h:body>
