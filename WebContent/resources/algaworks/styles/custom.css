@@ -1,19 +1,19 @@
 /* REQUIRED ( * ) */
 .req-fields {
-  color: #E53935 !important;
+  color: red !important;
   font-size: 12px;
   display: block; }
 
 label.required::after {
   content: " *";
-  color: #E53935 !important; }
+  color: red !important; }
 
 .ui-selectonemenu.required .ui-selectonemenu-label::after {
   content: " *";
-  color: #E53935 !important; }
+  color: red !important; }
 
 .ui-outputlabel-rfi {
-  color: #E53935 !important; }
+  color: red !important; }
 
 /* BASE */
 

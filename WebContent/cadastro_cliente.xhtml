@@ -9,7 +9,8 @@
 
 		<h1 class="aw-page-title">
 			Cadastro de Cliente
-			<h:outputText value="Campos Obrigatorios ( * ) " styleClass="req-fields"/>
+			<h:outputText value="Campos Obrigatorios ( * ) "
+				styleClass="req-fields" />
 		</h1>
 
 		<h:form id="frm">
@@ -30,7 +31,7 @@
 				<p:tabView style="margin-top: 10px;">
 
 					<p:tab title="Dados básicos">
-					
+
 						<p:panelGrid columns="4" layout="grid"
 							columnClasses="ui-grid-col-2, ui-grid-col-4, 
 										ui-grid-col-2, ui-grid-col-4"
@@ -95,29 +96,30 @@
 					</p:tab>
 
 					<p:tab title="Endereços">
-						<p:commandButton value="Novo endereço" style="width: auto" />
+						<p:commandButton value="Novo endereço" style="width: auto"
+							oncomplete="PF('novoEnderecoDialog').show()" />
 
 						<p:dataTable value="#{clienteController.clienteEdicao.enderecos}"
 							var="endereco"
 							emptyMessage="Nenhum endereço disponível para exibir :("
 							style="margin-top: 10px">
-							
+
 							<p:column headerText="Logradouro:">
 								<h:outputText value="#{endereco.logradouro}" />
 							</p:column>
-							
+
 							<p:column headerText="Número:">
 								<h:outputText value="#{endereco.numero}" />
 							</p:column>
-							
+
 							<p:column headerText="Bairro:" priority="4">
 								<h:outputText value="#{endereco.bairro}" />
 							</p:column>
-							
+
 							<p:column headerText="Cidade:" priority="6">
 								<h:outputText value="#{endereco.cidade}" />
 							</p:column>
-							
+
 						</p:dataTable>
 					</p:tab>
 
@@ -127,6 +129,42 @@
 
 				</p:tabView>
 			</div>
+
+			<p:dialog widgetVar="novoEnderecoDialog" id="novoEnderecoDialog"
+				header="Novo Endereço" resizable="false" responsive="true">
+
+				<p:panelGrid columns="1" layout="grid"
+					styleClass="panelgrid-noborder">
+
+					<h4 style="color: red;">Campos Obrigatórios ( * )</h4>
+
+				</p:panelGrid>
+
+				<div class="ui-fluid">
+
+					<p:panelGrid columns="2" layout="grid"
+						styleClass="panelgrid-noborder"
+						columnClasses="ui-grid-col-4, ui-grid-col-8">
+
+						<p:outputLabel value="Logradouro:" for="logradouro" />
+						<p:inputText id="logradouro" required="true" />
+
+						<p:outputLabel value="Numero:" for="numero" />
+						<p:inputText id="numero" required="true" />
+
+						<p:outputLabel value="Bairro:" for="bairro" />
+						<p:inputText id="bairro" />
+
+						<p:outputLabel value="Cidade:" for="cidade" />
+						<p:inputText id="cidade" />
+
+						<p:outputLabel />
+						<p:commandButton value="Adicionar" />
+
+					</p:panelGrid>
+				</div>
+
+			</p:dialog>
 
 		</h:form>
 
