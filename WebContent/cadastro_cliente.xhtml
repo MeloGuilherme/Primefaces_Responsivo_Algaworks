@@ -28,7 +28,7 @@
 			</p:toolbar>
 
 			<div class="ui-fluid">
-				<p:tabView style="margin-top: 10px;">
+				<p:tabView style="margin-top: 10px;" id="tabView">
 
 					<p:tab title="Dados básicos">
 
@@ -97,10 +97,14 @@
 
 					<p:tab title="Endereços">
 						<p:commandButton value="Novo endereço" style="width: auto"
-							oncomplete="PF('novoEnderecoDialog').show()" />
+							oncomplete="PF('novoEnderecoDialog').show()"
+							action="#{clienteController.novoEndereco}" process="@this"
+							update="frm:novoEnderecoDialog">
+							<p:resetInput target="frm:novoEnderecoDialog" />
+						</p:commandButton>
 
 						<p:dataTable value="#{clienteController.clienteEdicao.enderecos}"
-							var="endereco"
+							var="endereco" id="enderecosTable"
 							emptyMessage="Nenhum endereço disponível para exibir :("
 							style="margin-top: 10px">
 
@@ -140,29 +144,41 @@
 
 				</p:panelGrid>
 
-				<div class="ui-fluid">
+				<h:panelGroup id="novoEnderecoPanel" layout="block"
+					styleClass="ui-fluid">
+
+					<p:messages autoUpdate="false" />
 
 					<p:panelGrid columns="2" layout="grid"
 						styleClass="panelgrid-noborder"
 						columnClasses="ui-grid-col-4, ui-grid-col-8">
 
 						<p:outputLabel value="Logradouro:" for="logradouro" />
-						<p:inputText id="logradouro" required="true" />
+						<p:inputText id="logradouro" required="true"
+							value="#{clienteController.enderecoEdicao.logradouro}" />
 
 						<p:outputLabel value="Numero:" for="numero" />
-						<p:inputText id="numero" required="true" />
+						<p:inputText id="numero" required="true"
+							value="#{clienteController.enderecoEdicao.numero}" />
 
 						<p:outputLabel value="Bairro:" for="bairro" />
-						<p:inputText id="bairro" />
+						<p:inputText id="bairro"
+							value="#{clienteController.enderecoEdicao.bairro}" />
 
 						<p:outputLabel value="Cidade:" for="cidade" />
-						<p:inputText id="cidade" />
+						<p:inputText id="cidade"
+							value="#{clienteController.enderecoEdicao.cidade}" />
 
 						<p:outputLabel />
-						<p:commandButton value="Adicionar" />
+						<p:commandButton value="Adicionar" process="novoEnderecoDialog"
+							update="tabView:enderecosTable novoEnderecoPanel"
+							oncomplete="if (!args.validationFailed) PF('novoEnderecoDialog').hide()">
+							<p:collector value="#{clienteController.enderecoEdicao}"
+								addTo="#{clienteController.clienteEdicao.enderecos}" />
+						</p:commandButton>
 
 					</p:panelGrid>
-				</div>
+				</h:panelGroup>
 
 			</p:dialog>
 
