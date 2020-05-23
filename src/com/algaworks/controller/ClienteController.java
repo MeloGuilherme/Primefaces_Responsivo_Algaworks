@@ -48,7 +48,7 @@ public class ClienteController implements Serializable {
 
 	public String novoCliente() {
 		clienteEdicao = new Cliente();
-		return "CadastroCliente?faces-redirect=true";
+		return "cadastro_cliente?faces-redirect=true";
 	}
 
 	public void salvar() {

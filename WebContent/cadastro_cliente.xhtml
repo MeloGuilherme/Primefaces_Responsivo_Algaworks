@@ -17,15 +17,21 @@
 			<p:toolbar>
 
 				<p:toolbarGroup>
-					<p:commandButton value="Salvar" />
+					<p:commandButton value="Salvar" action="#{clienteController.salvar}"
+					process="tabView @this" update="@form"/>
 				</p:toolbarGroup>
 
 				<p:toolbarGroup align="right">
-					<p:commandButton value="Novo" />
+					<p:commandButton value="Novo" action="#{clienteController.novoCliente}"
+					process="@this" update="@form"/>
 					<p:button value="Pesquisa" outcome="pesquisa_clientes" />
 				</p:toolbarGroup>
 
 			</p:toolbar>
+			
+			<p:messages>
+				<p:autoUpdate disabled="true"/>
+			</p:messages>
 
 			<div class="ui-fluid">
 				<p:tabView style="margin-top: 10px;" id="tabView">
@@ -38,22 +44,23 @@
 							styleClass="panelgrid-noborder">
 
 							<p:outputLabel value="Nome:" for="nome" />
-							<p:inputText required="true" id="nome" />
+							<p:inputText required="true" id="nome" value="#{clienteController.clienteEdicao.nome}"/>
 
 							<p:outputLabel value="CPF:" for="cpf" />
-							<p:inputMask required="true" id="cpf" mask="999.999.999-99" />
+							<p:inputMask required="true" id="cpf" mask="999.999.999-99" 
+							value="#{clienteController.clienteEdicao.cpf}"/>
 
 							<p:outputLabel value="Celular" for="celular" />
-							<p:inputText required="true" id="celular" />
+							<p:inputText required="true" id="celular" value="#{clienteController.clienteEdicao.celular}"/>
 
 							<p:outputLabel value="Telefone:" for="telefone" />
-							<p:inputText id="telefone" />
+							<p:inputText id="telefone" value="#{clienteController.clienteEdicao.telefone}"/>
 
 							<p:outputLabel value="Email:" for="email" />
-							<p:inputText required="true" id="email" />
+							<p:inputText required="true" id="email" value="#{clienteController.clienteEdicao.email}"/>
 
 							<p:outputLabel value="Estado:" for="estado" />
-							<p:selectOneMenu id="estado">
+							<p:selectOneMenu id="estado" value="#{clienteController.clienteEdicao.estado}">
 								<f:selectItem itemLabel="Selecione..." />
 								<f:selectItem itemLabel="AC" itemValue="Acre" />
 								<f:selectItem itemLabel="AL" itemValue="Alagoas" />
@@ -86,10 +93,12 @@
 							</p:selectOneMenu>
 
 							<p:outputLabel value="Data de Nascimento:" for="dataNascimento" />
-							<p:inputText id="dataNascimento" />
+							<p:calendar id="dataNascimento" pattern="dd/MM/yyyy"
+							 value="#{clienteController.clienteEdicao.dataNascimento}"/>
 
 							<p:outputLabel />
-							<p:selectBooleanCheckbox itemLabel="Parcelamento liberado" />
+							<p:selectBooleanCheckbox itemLabel="Parcelamento liberado"
+							 value="#{clienteController.clienteEdicao.parcelamentoLiberado}"/>
 
 						</p:panelGrid>
 
@@ -128,7 +137,7 @@
 					</p:tab>
 
 					<p:tab title="Observações">
-						<p:inputTextarea rows="7" />
+						<p:inputTextarea rows="7" value="#{clienteController.clienteEdicao.observacoes}"/>
 					</p:tab>
 
 				</p:tabView>
